@@ -1,1 +1,195 @@
-<p><h2>Hello</h2></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Brain Tumor Classification Using Deep Learning on Bangladeshi MRI Dataset</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.7;
+            margin: 40px;
+            background-color: #f4f8fc;
+            color: #333;
+        }
+
+        h1 {
+            color: #2f243d;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #526b92;
+            border-bottom: 2px solid #36465e;
+            padding-bottom: 5px;
+        }
+
+        section {
+            background: #ffffff;
+            padding: 22px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+            text-align: justify;
+        }
+
+        ul {
+            margin-left: 25px;
+        }
+
+        img {
+            display: block;
+            max-width: 85%;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Brain Tumor Classification Using Deep Learning on Bangladeshi MRI Dataset</h1>
+
+<section>
+    <h2>Project Overview</h2>
+    <p>
+        This project focuses on classifying brain tumors from MRI images using deep
+        learning and graph neural networks. A pretrained InceptionV3 model is used
+        to extract high-level image features, which are further processed using an
+        Enhanced Graph Neural Network for accurate tumor classification.
+    </p>
+</section>
+
+<section>
+<h2>Overall Methodology</h2>
+    <p>
+        The following diagram illustrates the complete workflow of the proposed brain
+        tumor classification system, starting from MRI image input to final tumor
+        prediction using InceptionV3-based feature extraction, graph construction,
+        and Enhanced GNN classification.
+    </p>
+    <img src="methodology.png" alt="Overall Methodology Diagram">
+</section>
+
+<section>
+    <h2>1. Data Preparation</h2>
+    <p>
+        The brain MRI dataset is divided into three subsets to ensure reliable training
+        and evaluation. The training set is used to learn model parameters, the validation
+        set monitors performance during training, and the test set provides a final,
+        unbiased assessment of model generalization.
+    </p>
+    <ul>
+        <li>Training set (65%) used for model learning</li>
+        <li>Validation set (20%) used for performance monitoring</li>
+        <li>Test set (15%) used for final evaluation on unseen data</li>
+    </ul>
+</section>
+
+<section>
+    <h2>2. Feature Extraction using InceptionV3</h2>
+    <p>
+        InceptionV3 is a deep convolutional neural network pretrained on the ImageNet
+        dataset and is employed as a feature extractor. The final classification layer
+        is removed, and each MRI image is transformed into a 2048-dimensional feature
+        vector that captures discriminative visual characteristics.
+    </p>
+
+    <img src="inception_v3.png" alt="InceptionV3 Architecture">
+
+    <p>
+        These extracted features encode critical information related to tumor shape,
+        texture, and spatial structure, forming a compact numerical representation
+        suitable for graph-based learning.
+    </p>
+</section>
+
+<section>
+    <h2>3. Graph Construction</h2>
+    <p>
+        Each MRI image is represented as a node in a graph, with node attributes defined
+        by the extracted deep features. Edges are constructed using a K-Nearest Neighbor
+        (KNN) strategy to model similarity relationships between images, resulting in
+        a structured graph representation.
+    </p>
+</section>
+
+<section>
+    <h2>4. Enhanced Graph Neural Network (GNN)</h2>
+    <p>
+        The Enhanced Graph Neural Network is composed of multiple GCNConv layers that
+        enable information exchange among neighboring nodes. The architecture integrates
+        ReLU activation functions, batch normalization, and dropout layers to improve
+        convergence stability and reduce overfitting.
+    </p>
+
+    <img src="gnn_model.png" alt="GNN Architecture">
+
+    <p>
+        Global mean pooling is applied to aggregate node-level representations into
+        a unified graph-level feature vector, which is subsequently passed to a fully
+        connected layer for tumor classification.
+    </p>
+</section>
+
+<section>
+    <h2>5. Training and Evaluation</h2>
+    <p>
+        Model training and evaluation are conducted using two core functions. The
+        training function performs forward propagation, loss computation, and
+        backpropagation, while the evaluation function assesses model performance
+        on validation or test datasets without modifying model parameters.
+    </p>
+</section>
+
+<section>
+    <h2>6. Hyperparameter Optimization with PSO</h2>
+    <p>
+        Particle Swarm Optimization (PSO) is utilized to automatically determine optimal
+        hyperparameters for the GNN model. The optimization process explores various
+        configurations, including hidden layer size, learning rate, dropout rate,
+        and the number of graph convolution layers.
+    </p>
+    <p>
+        Multiple inertia weight strategies-exponential decay, fractional decay, and
+        triangular oscillation-are evaluated, with the best-performing configuration
+        selected based on validation accuracy.
+    </p>
+</section>
+
+<section>
+    <h2>7. Final Model Training</h2>
+    <p>
+        Using the optimized hyperparameters, the final Enhanced GNN model is trained
+        with cosine annealing learning rate scheduling and early stopping mechanisms.
+        These techniques ensure smooth convergence and prevent overfitting, while the
+        best model is saved for later evaluation.
+    </p>
+</section>
+
+<section>
+    <h2>8. Testing and Results</h2>
+    <p>
+        The optimized model is evaluated on an unseen test dataset. Performance is
+        quantified using accuracy, precision, recall, F1-score, and confusion matrix
+        visualization to provide a comprehensive assessment of classification quality.
+    </p>
+
+    <img src="results.png" alt="Final Results and Confusion Matrix" width="325px", height="325px">
+</section>
+
+
+<section>
+    <h2>MODEL LINK</h2>
+    <p>
+        Model code – 
+        <a href="https://github.com/TanzilaDewan789/BT_Classification/blob/main/btc_gnn.ipynb" target="_blank">
+            Enhanced GNN Model for Brain Tumor Classification
+        </a>
+    </p>
+</section>
+    
+    
+
+
+</body>
+</html>
